@@ -7,7 +7,7 @@
     <artifactId>jbotan</artifactId>
     <version>0.1</version>
     <name>JBotan</name>
-    <description>A java library to work with botan API that helps with analytics for telegram bots</description>
+    <description>A java plugin library to work with jbots framework and reports analytics using botan API for telegram bots</description>
     <url>https://github.com/shibme/jbotan</url>
 
     <issueManagement>
@@ -151,20 +151,9 @@
             <version>0.1</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpasyncclient</artifactId>
-            <version>4.1.1</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.7.1</version>
+            <groupId>me.shib.java.lib</groupId>
+            <artifactId>botan</artifactId>
+            <version>1.0</version>
         </dependency>
     </dependencies>
 
