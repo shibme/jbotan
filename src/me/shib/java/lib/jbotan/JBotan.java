@@ -1,6 +1,7 @@
 package me.shib.java.lib.jbotan;
 
 import me.shib.java.lib.botan.Botan;
+import me.shib.java.lib.common.utils.JsonLib;
 import me.shib.java.lib.jbotstats.BotStatsConfig;
 import me.shib.java.lib.jbotstats.JBotStats;
 import me.shib.java.lib.jtelebot.types.*;
@@ -9,6 +10,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class JBotan extends JBotStats {
@@ -17,14 +19,19 @@ public class JBotan extends JBotStats {
 
     private Botan botan;
     private User botInfo;
+    private JsonLib jsonLib;
 
     public JBotan(BotStatsConfig botStatsConfig, User botInfo) {
         super(botStatsConfig, botInfo);
-        this.botan = new Botan(botStatsConfig.getToken());
+        if ((botStatsConfig.getToken() != null) && (!botStatsConfig.getToken().isEmpty())) {
+            this.botan = new Botan(botStatsConfig.getToken());
+        }
         this.botInfo = botInfo;
+        this.jsonLib = new JsonLib();
     }
 
     private void trackData(long user_id, String name, Object data) {
+        logger.log(Level.FINEST, "Tracking Data: [user_id: " + user_id + ", name: " + name + "]\ndata: " + jsonLib.toJson(data));
         if (botan != null) {
             if ((name != null) && (!name.isEmpty()) && (data != null)) {
                 try {
@@ -46,6 +53,7 @@ public class JBotan extends JBotStats {
 
     @Override
     public String getAnalyticsRedirectedURL(long user_id, String url) {
+        logger.entering(this.getClass().getName(), "getAnalyticsRedirectedURL", new Object[]{user_id, url});
         if (botan != null) {
             try {
                 return botan.shortenURL(user_id, url);
