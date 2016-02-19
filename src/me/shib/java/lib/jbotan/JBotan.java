@@ -133,7 +133,7 @@ public class JBotan extends JBotStats {
             data.put("response", response);
         }
         data.put("accessTime", accessTime);
-        trackData(response.getChat().getId(), "Sent Message", data);
+        trackData(response.getChat().getId(), "Sent Text", data);
     }
 
     @Override
@@ -148,7 +148,7 @@ public class JBotan extends JBotStats {
             data.put("response", response);
         }
         data.put("accessTime", accessTime);
-        trackData(response.getChat().getId(), "Forwarding Message", data);
+        trackData(response.getChat().getId(), "Forwarded Message", data);
     }
 
     @Override
