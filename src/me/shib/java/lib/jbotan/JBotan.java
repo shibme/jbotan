@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class JBotan extends JBotStats {
+public final class JBotan extends JBotStats {
 
     private static final Logger logger = Logger.getLogger(JBotan.class.getName());
 
