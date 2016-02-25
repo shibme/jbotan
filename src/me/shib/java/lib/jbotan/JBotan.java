@@ -119,13 +119,14 @@ public final class JBotan extends JBotStats {
     }
 
     @Override
-    public void onSendingMessage(ChatId chat_id, String text, ParseMode parse_mode, boolean disable_web_page_preview, long reply_to_message_id, ReplyMarkup reply_markup, Message response, IOException e, Date accessTime) {
+    public void onSendingMessage(ChatId chat_id, String text, boolean disable_notification, ParseMode parse_mode, boolean disable_web_page_preview, long reply_to_message_id, ReplyMarkup reply_markup, Message response, IOException e, Date accessTime) {
         Map<String, Object> data = new HashMap<>();
         if (e != null) {
             data.put("exception", e);
         } else {
             data.put("chat_id", chat_id);
             data.put("text", text);
+            data.put("disable_notification", disable_notification);
             data.put("parse_mode", parse_mode);
             data.put("disable_web_page_preview", disable_web_page_preview);
             data.put("reply_to_message_id", reply_to_message_id);
@@ -137,7 +138,7 @@ public final class JBotan extends JBotStats {
     }
 
     @Override
-    public void onForwardingMessage(ChatId chat_id, ChatId from_chat_id, long message_id, Message response, IOException e, Date accessTime) {
+    public void onForwardingMessage(ChatId chat_id, ChatId from_chat_id, long message_id, boolean disable_notification, Message response, IOException e, Date accessTime) {
         Map<String, Object> data = new HashMap<>();
         if (e != null) {
             data.put("exception", e);
@@ -145,6 +146,7 @@ public final class JBotan extends JBotStats {
             data.put("chat_id", chat_id);
             data.put("from_chat_id", from_chat_id);
             data.put("message_id", message_id);
+            data.put("disable_notification", disable_notification);
             data.put("response", response);
         }
         data.put("accessTime", accessTime);
@@ -152,13 +154,14 @@ public final class JBotan extends JBotStats {
     }
 
     @Override
-    public void onSendingPhoto(ChatId chat_id, TelegramFile photo, String caption, long reply_to_message_id, ReplyMarkup reply_markup, Message response, IOException e, Date accessTime) {
+    public void onSendingPhoto(ChatId chat_id, TelegramFile photo, boolean disable_notification, String caption, long reply_to_message_id, ReplyMarkup reply_markup, Message response, IOException e, Date accessTime) {
         Map<String, Object> data = new HashMap<>();
         if (e != null) {
             data.put("exception", e);
         } else {
             data.put("chat_id", chat_id);
             data.put("photo", photo);
+            data.put("disable_notification", disable_notification);
             data.put("caption", caption);
             data.put("reply_to_message_id", reply_to_message_id);
             data.put("reply_markup", reply_markup);
@@ -169,13 +172,14 @@ public final class JBotan extends JBotStats {
     }
 
     @Override
-    public void onSendingAudio(ChatId chat_id, TelegramFile audio, int duration, String performer, String title, long reply_to_message_id, ReplyMarkup reply_markup, Message response, IOException e, Date accessTime) {
+    public void onSendingAudio(ChatId chat_id, TelegramFile audio, boolean disable_notification, int duration, String performer, String title, long reply_to_message_id, ReplyMarkup reply_markup, Message response, IOException e, Date accessTime) {
         Map<String, Object> data = new HashMap<>();
         if (e != null) {
             data.put("exception", e);
         } else {
             data.put("chat_id", chat_id);
             data.put("audio", audio);
+            data.put("disable_notification", disable_notification);
             data.put("duration", duration);
             data.put("performer", performer);
             data.put("title", title);
@@ -188,13 +192,14 @@ public final class JBotan extends JBotStats {
     }
 
     @Override
-    public void onSendingDocument(ChatId chat_id, TelegramFile document, long reply_to_message_id, ReplyMarkup reply_markup, Message response, IOException e, Date accessTime) {
+    public void onSendingDocument(ChatId chat_id, TelegramFile document, boolean disable_notification, long reply_to_message_id, ReplyMarkup reply_markup, Message response, IOException e, Date accessTime) {
         Map<String, Object> data = new HashMap<>();
         if (e != null) {
             data.put("exception", e);
         } else {
             data.put("chat_id", chat_id);
             data.put("document", document);
+            data.put("disable_notification", disable_notification);
             data.put("reply_to_message_id", reply_to_message_id);
             data.put("reply_markup", reply_markup);
             data.put("response", response);
@@ -204,13 +209,14 @@ public final class JBotan extends JBotStats {
     }
 
     @Override
-    public void onSendingSticker(ChatId chat_id, TelegramFile sticker, long reply_to_message_id, ReplyMarkup reply_markup, Message response, IOException e, Date accessTime) {
+    public void onSendingSticker(ChatId chat_id, TelegramFile sticker, boolean disable_notification, long reply_to_message_id, ReplyMarkup reply_markup, Message response, IOException e, Date accessTime) {
         Map<String, Object> data = new HashMap<>();
         if (e != null) {
             data.put("exception", e);
         } else {
             data.put("chat_id", chat_id);
             data.put("sticker", sticker);
+            data.put("disable_notification", disable_notification);
             data.put("reply_to_message_id", reply_to_message_id);
             data.put("reply_markup", reply_markup);
             data.put("response", response);
@@ -220,13 +226,14 @@ public final class JBotan extends JBotStats {
     }
 
     @Override
-    public void onSendingVideo(ChatId chat_id, TelegramFile video, int duration, String caption, long reply_to_message_id, ReplyMarkup reply_markup, Message response, IOException e, Date accessTime) {
+    public void onSendingVideo(ChatId chat_id, TelegramFile video, boolean disable_notification, int duration, String caption, long reply_to_message_id, ReplyMarkup reply_markup, Message response, IOException e, Date accessTime) {
         Map<String, Object> data = new HashMap<>();
         if (e != null) {
             data.put("exception", e);
         } else {
             data.put("chat_id", chat_id);
             data.put("video", video);
+            data.put("disable_notification", disable_notification);
             data.put("duration", duration);
             data.put("caption", caption);
             data.put("reply_to_message_id", reply_to_message_id);
@@ -238,13 +245,14 @@ public final class JBotan extends JBotStats {
     }
 
     @Override
-    public void onSendingVoice(ChatId chat_id, TelegramFile voice, int duration, long reply_to_message_id, ReplyMarkup reply_markup, Message response, IOException e, Date accessTime) {
+    public void onSendingVoice(ChatId chat_id, TelegramFile voice, boolean disable_notification, int duration, long reply_to_message_id, ReplyMarkup reply_markup, Message response, IOException e, Date accessTime) {
         Map<String, Object> data = new HashMap<>();
         if (e != null) {
             data.put("exception", e);
         } else {
             data.put("chat_id", chat_id);
             data.put("voice", voice);
+            data.put("disable_notification", disable_notification);
             data.put("duration", duration);
             data.put("reply_to_message_id", reply_to_message_id);
             data.put("reply_markup", reply_markup);
@@ -255,7 +263,7 @@ public final class JBotan extends JBotStats {
     }
 
     @Override
-    public void onSendingLocation(ChatId chat_id, float latitude, float longitude, long reply_to_message_id, ReplyMarkup reply_markup, Message response, IOException e, Date accessTime) {
+    public void onSendingLocation(ChatId chat_id, float latitude, float longitude, boolean disable_notification, long reply_to_message_id, ReplyMarkup reply_markup, Message response, IOException e, Date accessTime) {
         Map<String, Object> data = new HashMap<>();
         if (e != null) {
             data.put("exception", e);
@@ -263,6 +271,7 @@ public final class JBotan extends JBotStats {
             data.put("chat_id", chat_id);
             data.put("latitude", latitude);
             data.put("longitude", longitude);
+            data.put("disable_notification", disable_notification);
             data.put("reply_to_message_id", reply_to_message_id);
             data.put("reply_markup", reply_markup);
             data.put("response", response);
