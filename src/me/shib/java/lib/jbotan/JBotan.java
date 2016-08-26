@@ -1,7 +1,6 @@
 package me.shib.java.lib.jbotan;
 
 import me.shib.java.lib.botan.Botan;
-import me.shib.java.lib.common.utils.JsonLib;
 import me.shib.java.lib.jbotstats.BotStatsConfig;
 import me.shib.java.lib.jbotstats.JBotStats;
 import me.shib.java.lib.jtelebot.models.inline.InlineKeyboardMarkup;
@@ -11,6 +10,7 @@ import me.shib.java.lib.jtelebot.models.updates.ChosenInlineResult;
 import me.shib.java.lib.jtelebot.models.updates.InlineQuery;
 import me.shib.java.lib.jtelebot.models.updates.Message;
 import me.shib.java.lib.jtelebot.models.updates.Update;
+import me.shib.java.lib.restiny.util.JsonUtil;
 
 import java.io.IOException;
 import java.util.Date;
@@ -25,7 +25,7 @@ public final class JBotan extends JBotStats {
 
     private Botan botan;
     private User botInfo;
-    private JsonLib jsonLib;
+    private JsonUtil jsonUtil;
 
     public JBotan(BotStatsConfig botStatsConfig, User botInfo) {
         super(botStatsConfig, botInfo);
@@ -33,11 +33,11 @@ public final class JBotan extends JBotStats {
             this.botan = new Botan(botStatsConfig.getToken());
         }
         this.botInfo = botInfo;
-        this.jsonLib = new JsonLib();
+        this.jsonUtil = new JsonUtil();
     }
 
     private void trackData(long user_id, String name, Object data) {
-        logger.log(Level.FINEST, "Tracking Data: [user_id: " + user_id + ", name: " + name + "]\ndata: " + jsonLib.toJson(data));
+        logger.log(Level.FINEST, "Tracking Data: [user_id: " + user_id + ", name: " + name + "]\ndata: " + jsonUtil.toJson(data));
         if (botan != null) {
             if ((name != null) && (!name.isEmpty()) && (data != null)) {
                 try {
